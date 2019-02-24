@@ -1,5 +1,11 @@
 import React from 'react'
 import { hydrate } from 'react-dom'
-import App from 'src/App'
+import AppWithTheme from './components/AppWithTheme'
+import HotAppWithRedux from './components/HotAppWithRedux'
 
-hydrate(<App />, document.getElementById('root'))
+hydrate(
+  <AppWithTheme>
+    <HotAppWithRedux />
+  </AppWithTheme>,
+  document.getElementById('root')
+)

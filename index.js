@@ -14,7 +14,7 @@ const compiler = webpack(universalConfig)
 
 const clientCompiler = compiler.compilers.find(compiler => compiler.name === 'client')
 
-app.use(webpackDevMiddleware(compiler, setup.webpackDevMiddleware))
+app.use(webpackDevMiddleware(compiler,       setup.webpackDevMiddleware))
 app.use(webpackHotMiddleware(clientCompiler, setup.webpackHotMiddleware))
 app.use(webpackHotServerMiddleware(compiler, setup.webpackHotServerMiddleware))
 

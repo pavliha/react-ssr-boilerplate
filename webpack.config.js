@@ -1,5 +1,10 @@
 const path = require('path')
 const Css = require('mini-css-extract-plugin')
+const Clean = require('clean-webpack-plugin')
+const Copy = require('copy-webpack-plugin')
+const Loadable = require('@loadable/webpack-plugin')
+const Env = require('dotenv-webpack')
+const webpack = require('webpack')
 
 module.exports = {
   mode: 'development',
@@ -9,7 +14,12 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.json'],
     modules: ['node_modules'],
     alias: {
-      src: path.resolve(__dirname, './src')
+      src: path.resolve(__dirname, './src'),
+      api: path.resolve(__dirname, './src/api'),
+      config: path.resolve(__dirname, './config'),
+      engines: path.resolve(__dirname, './src/redux/engines'),
+      entities: path.resolve(__dirname, './src/redux/app/entities'),
+      utils: path.resolve(__dirname, './src/utils'),
     }
   },
 
@@ -54,4 +64,16 @@ module.exports = {
       },
     ],
   },
+
+  plugins: [
+    new Clean('public'),
+    new Loadable({ writeToDisk: true }),
+    new Env({ safe: true }),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new Copy([{ from: './src/assets', to: './build/public' }]),
+    new Css({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
+  ]
 }

@@ -1,8 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
-const dist = path.join(__dirname, 'dist')
 const merge = require('webpack-merge')
 const config = require('../webpack.config')
+
+
+const dist = path.join(__dirname, '../build')
+
 
 /**
  * Universal webpack config for both client and server
