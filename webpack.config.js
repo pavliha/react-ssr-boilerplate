@@ -1,13 +1,10 @@
 const path = require('path')
 const Css = require('mini-css-extract-plugin')
-const Clean = require('clean-webpack-plugin')
-const Copy = require('copy-webpack-plugin')
-const Loadable = require('@loadable/webpack-plugin')
+
 const Env = require('dotenv-webpack')
 const webpack = require('webpack')
 
 module.exports = {
-  mode: 'development',
   devtool: 'source-map',
 
   resolve: {
@@ -21,6 +18,13 @@ module.exports = {
       entities: path.resolve(__dirname, './src/redux/app/entities'),
       utils: path.resolve(__dirname, './src/utils'),
     }
+  },
+
+  context: __dirname,
+
+  performance: {
+    maxEntrypointSize: 500000,
+    hints: false,
   },
 
   module: {
@@ -66,11 +70,9 @@ module.exports = {
   },
 
   plugins: [
-    new Clean('public'),
-    new Loadable({ writeToDisk: true }),
+
     new Env({ safe: true }),
     new webpack.NoEmitOnErrorsPlugin(),
-    new Copy([{ from: './src/assets', to: './build/public' }]),
     new Css({
       filename: '[name].css',
       chunkFilename: '[id].css',

@@ -1,28 +1,12 @@
 import React from 'react'
-import { node } from 'prop-types'
+import { node, object } from 'prop-types'
 import JssProvider from 'react-jss/lib/JssProvider'
-import { SheetsRegistry } from 'jss'
 import { createGenerateClassName, createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import theme from 'config/theme'
+import RemoveServerStyles from './RemoveServerStyles'
 
-class RemoveServerStyles extends React.Component {
-  componentDidMount() {
-    const jssStyles = document.getElementById('jss-server-side')
-    if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles)
-    }
-  }
-
-  render() {
-    const { children } = this.props
-    return children
-  }
-}
-
-const AppWithTheme = ({ children }) => {
+const WithTheme = ({ children, sheetsRegistry, sheetsManager }) => {
   const isServer = typeof window === 'undefined'
-  const sheetsRegistry = isServer ? new SheetsRegistry() : undefined
-  const sheetsManager = isServer ? new Map() : undefined
 
   return (
     <JssProvider
@@ -39,8 +23,10 @@ const AppWithTheme = ({ children }) => {
   )
 }
 
-AppWithTheme.propTypes = {
+WithTheme.propTypes = {
   children: node.isRequired,
+  sheetsRegistry: object,
+  sheetsManager: object,
 }
 
-export default AppWithTheme
+export default WithTheme

@@ -1,11 +1,14 @@
 import React from 'react'
 import { hydrate } from 'react-dom'
-import AppWithTheme from './components/AppWithTheme'
-import HotAppWithRedux from './components/HotAppWithRedux'
+import WithTheme from './components/WithTheme'
+import WithRedux from './components/WithRedux'
+import HotApp from './components/HotApp'
 
 hydrate(
-  <AppWithTheme>
-    <HotAppWithRedux />
-  </AppWithTheme>,
+  <WithTheme>
+    <WithRedux>
+      <HotApp />
+    </WithRedux>
+  </WithTheme>,
   document.getElementById('root')
 )
