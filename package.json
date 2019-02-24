@@ -4,10 +4,10 @@
   "description": "Example usage of webpack-hot-server-middleware",
   "main": "index.js",
   "scripts": {
-    "start": "npm run start:express",
-    "start:express": "node setup/index.js",
-    "start:koa": "node koa/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
+  },
+  "aliases": {
+    "src": "./src"
   },
   "author": "",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "@babel/preset-react": "^7.0.0",
     "@loadable/babel-plugin": "^5.6.0",
     "babel-loader": "^8.0.5",
+    "dotenv": "^6.2.0",
     "express": "^4.16.2",
     "mini-css-extract-plugin": "^0.5.0",
     "react": "^16.0.0",

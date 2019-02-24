@@ -2,10 +2,17 @@ const path = require('path')
 const webpack = require('webpack')
 const dist = path.join(__dirname, 'dist')
 const merge = require('webpack-merge')
-const config = require('./webpack.config')
+const config = require('../webpack.config')
+
+/**
+ * Universal webpack config for both client and server
+ */
 
 module.exports = [
 
+  /**
+   * Webpack development config for client
+   */
   merge(config, {
     name: 'client',
     target: 'web',
@@ -13,7 +20,7 @@ module.exports = [
       client: [
         '@babel/polyfill',
         'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-        './src/index.js',
+        './setup/client.js',
       ],
     },
     output: {
@@ -26,6 +33,9 @@ module.exports = [
     ]
   }),
 
+  /**
+   * Webpack development config for node server
+   */
   merge(config, {
     name: 'server',
     target: 'node',

@@ -1,8 +1,15 @@
 const Css = require('mini-css-extract-plugin')
+const npmPackage = require('./package.json')
 
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
+
+  resolve: {
+    extensions: ['*', '.js', '.jsx', '.json'],
+    modules: ['node_modules'],
+    alias: npmPackage.aliases || {},
+  },
 
   module: {
     rules: [
