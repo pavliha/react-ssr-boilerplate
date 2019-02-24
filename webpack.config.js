@@ -1,5 +1,5 @@
+const path = require('path')
 const Css = require('mini-css-extract-plugin')
-const npmPackage = require('./package.json')
 
 module.exports = {
   mode: 'development',
@@ -8,7 +8,9 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
     modules: ['node_modules'],
-    alias: npmPackage.aliases || {},
+    alias: {
+      src: path.resolve(__dirname, './src')
+    }
   },
 
   module: {

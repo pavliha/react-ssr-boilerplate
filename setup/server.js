@@ -1,11 +1,11 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import App from '../src/App'
+import App from 'src/App'
 
 export default ({ clientStats, serverStats, foo }) => (req, res) => {
   res.status(200).send(`
     <!doctype html>
-    <html>
+    <html lang="ru">
     <head>
         <title>${foo}</title>
     </head>

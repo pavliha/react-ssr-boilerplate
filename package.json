@@ -6,9 +6,6 @@
   "scripts": {
     "start": "node index.js"
   },
-  "aliases": {
-    "src": "./src"
-  },
   "author": "",
   "license": "MIT",
   "dependencies": {},
