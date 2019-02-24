@@ -1,3 +1,3 @@
-# Webpack Hot Server Middleware Example
+# React sever side rendering boilerplate
 
-`npm install && npm start`
+`yarn install && yarn start`
