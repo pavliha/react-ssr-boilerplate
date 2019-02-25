@@ -5,8 +5,9 @@ import { createGenerateClassName, createMuiTheme, MuiThemeProvider } from '@mate
 import theme from 'config/theme'
 import RemoveServerStyles from './RemoveServerStyles'
 
-const WithTheme = ({ children, sheetsRegistry, sheetsManager }) => {
+const WithTheme = ({ children, sheetsRegistry }) => {
   const isServer = typeof window === 'undefined'
+  const sheetsManager = isServer ? new Map() : undefined
 
   return (
     <JssProvider
@@ -26,7 +27,6 @@ const WithTheme = ({ children, sheetsRegistry, sheetsManager }) => {
 WithTheme.propTypes = {
   children: node.isRequired,
   sheetsRegistry: object,
-  sheetsManager: object,
 }
 
 export default WithTheme
