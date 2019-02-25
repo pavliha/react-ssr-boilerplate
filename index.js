@@ -11,30 +11,27 @@ const app = express()
 
 config()
 
-switch (process.env.NODE_ENV) {
+const isProduction = process.argv.includes('--production')
 
-  case 'development': {
-    const compiler = webpack(universalConfig)
+process.env.NODE_ENV = isProduction ? 'production' : 'development'
 
-    const clientCompiler = compiler.compilers.find(compiler => compiler.name === 'client')
+if (!process.argv.includes('--production')) {
+  const compiler = webpack(universalConfig)
 
-    app.use(webpackDevMiddleware(compiler, setup.webpackDevMiddleware))
-    app.use(webpackHotMiddleware(clientCompiler, setup.webpackHotMiddleware))
-    app.use(webpackHotServerMiddleware(compiler, setup.webpackHotServerMiddleware))
+  const clientCompiler = compiler.compilers.find(compiler => compiler.name === 'client')
 
-    break
-  }
+  app.use(webpackDevMiddleware(compiler, setup.webpackDevMiddleware))
+  app.use(webpackHotMiddleware(clientCompiler, setup.webpackHotMiddleware))
+  app.use(webpackHotServerMiddleware(compiler, setup.webpackHotServerMiddleware))
 
-  case 'production': {
-    const client = path.resolve(__dirname, '../build')
-    const serverPath = path.resolve(__dirname, './build/main.js')
+} else {
+  const client = path.resolve(__dirname, '../build')
+  const serverPath = path.resolve(__dirname, './build/server.js')
 
-    const serverRenderer = require(serverPath).default
+  const serverRenderer = require(serverPath).default
 
-    app.use(express.static(client))
-    app.use(serverRenderer())
-  }
-
+  app.use(express.static(client))
+  app.use(serverRenderer())
 }
 
 app.listen(process.env.PORT, () => {

@@ -17,6 +17,7 @@ module.exports = {
       engines: path.resolve(__dirname, './src/redux/engines'),
       entities: path.resolve(__dirname, './src/redux/app/entities'),
       utils: path.resolve(__dirname, './src/utils'),
+      assets: path.resolve(__dirname, './src/assets')
     }
   },
 
@@ -72,6 +73,9 @@ module.exports = {
   plugins: [
     new Env({ safe: true }),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': process.argv.includes('--production') ? '"production"' : '"development"',
+    }),
     new Css({
       filename: '[name].css',
       chunkFilename: '[id].css',
