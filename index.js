@@ -26,8 +26,8 @@ switch (process.env.NODE_ENV) {
   }
 
   case 'production': {
-    const client = path.resolve(__dirname, '../build/public')
-    const serverPath = path.resolve(__dirname, './build/server.js')
+    const client = path.resolve(__dirname, '../build')
+    const serverPath = path.resolve(__dirname, './build/main.js')
 
     const serverRenderer = require(serverPath).default
 

@@ -70,7 +70,6 @@ module.exports = {
   },
 
   plugins: [
-
     new Env({ safe: true }),
     new webpack.NoEmitOnErrorsPlugin(),
     new Css({
