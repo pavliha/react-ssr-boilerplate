@@ -1,4 +1,5 @@
 import { applyMiddleware, createStore } from 'redux'
+import promise from 'redux-promise-middleware'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware, { END } from 'redux-saga'
 import rootSaga from 'src/redux/app/sagas'
@@ -18,6 +19,7 @@ const store = createStore(
   initialState,
   composeWithDevTools(
     applyMiddleware(
+      promise,
       sagaMiddleware,
     ),
   ),

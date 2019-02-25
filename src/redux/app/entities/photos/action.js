@@ -1,3 +1,5 @@
+import Photos from 'src/api/Photos'
+
 export const UPLOAD_PHOTO = 'UPLOAD_PHOTO'
 export const UPLOAD_PHOTO_PENDING = 'UPLOAD_PHOTO_PENDING'
 export const UPLOAD_PHOTO_FULFILLED = 'UPLOAD_PHOTO_FULFILLED'
@@ -14,20 +16,24 @@ export const DESTROY_PHOTO_FULFILLED = 'DESTROY_PHOTO_FULFILLED'
 
 const upload = (file, isPortrait) => ({
   type: UPLOAD_PHOTO,
-  payload: { file, isPortrait }
+  payload: Photos.upload(),
+  meta: { file, isPortrait }
 })
 
 const all = () => ({
   type: LOAD_PHOTOS,
+  payload: Photos.all()
 })
 
 const sort = (photos_ids) => ({
   type: SORT_PHOTOS,
+  payload: Photos.sort(photos_ids),
   meta: { photos_ids }
 })
 
 const destroy = (photo_id) => ({
   type: DESTROY_PHOTO,
+  payload: Photos.destroy(photo_id),
   meta: { photo_id }
 })
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { object } from 'prop-types'
 import { withStyles } from '@material-ui/core'
+import { BACKEND_URL } from 'src/constants'
 
 const styles = {
   root: {
@@ -12,7 +13,7 @@ const styles = {
 
 const Slide = ({ classes, photo }) =>
   <div className={classes.root} style={{
-    backgroundImage: `url(${photo.url})`
+    backgroundImage: `url(${BACKEND_URL}${photo.url})`
   }} />
 
 Slide.propTypes = {

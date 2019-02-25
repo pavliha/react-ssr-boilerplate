@@ -7,20 +7,31 @@ import createLayout from './layout'
 import withCodeSplitting from './utils/withCodeSplitting'
 import WithTheme from './components/WithTheme'
 import WithRedux from './components/WithRedux'
+import PreloadManager from './components/PreloadManager'
+import sagas from 'src/redux/app/sagas'
 
-export default () => (request, response) => {
+export default () => async (request, response) => {
   const sheetsRegistry = new SheetsRegistry()
   const context = {}
+  const promises = []
 
   const [jsx, extractor] = withCodeSplitting(
     <WithTheme sheetsRegistry={sheetsRegistry}>
       <WithRedux>
-        <StaticRouter context={context} location={request.url}>
-          <App />
-        </StaticRouter>
+        <PreloadManager promises={promises} store={store} request={request}>
+          <StaticRouter context={context} location={request.url}>
+            <App />
+          </StaticRouter>
+        </PreloadManager>
       </WithRedux>
     </WithTheme>
   )
+
+  await Promise.all(promises)
+
+  store.close()
+  await store.runSaga(sagas).toPromise()
+
   const layout = createLayout({
     content: jsx,
     state: store.getState(),
@@ -29,4 +40,5 @@ export default () => (request, response) => {
   })
 
   response.send(layout)
+
 }

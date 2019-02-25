@@ -1,9 +1,10 @@
-import React, { Component, memo } from 'react'
+import React, { Component } from 'react'
 import { object, array } from 'prop-types'
 import { Button, Typography, withStyles } from '@material-ui/core'
 import connector from './connector'
 import { Link } from 'react-router-dom'
 import Slider from './Slider'
+import isEmpty from 'lodash/isEmpty'
 
 const styles = {
   root: {
@@ -35,6 +36,13 @@ const styles = {
 }
 
 class SliderSection extends Component {
+
+  componentDidMount() {
+    const { actions, photos } = this.props
+    if (isEmpty(photos)) {
+      actions.photos.all()
+    }
+  }
 
   render() {
     const { classes, photos } = this.props
@@ -74,6 +82,7 @@ class SliderSection extends Component {
 SliderSection.propTypes = {
   classes: object.isRequired,
   photos: array.isRequired,
+  actions: object.isRequired,
 }
 
-export default withStyles(styles)(connector(memo(SliderSection, () => true)))
+export default withStyles(styles)(connector(SliderSection))

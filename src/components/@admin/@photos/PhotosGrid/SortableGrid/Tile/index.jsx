@@ -4,8 +4,7 @@ import { withStyles } from '@material-ui/core'
 import classNames from 'classnames'
 import { SortableElement } from 'react-sortable-hoc'
 import DragHandle from './DragHandle'
-
-const { BACKEND_URL } = process.env.BACKEND_URL
+import { BACKEND_URL } from 'src/constants'
 
 const styles = {
   root: {
