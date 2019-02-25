@@ -1,11 +1,11 @@
 import React from 'react'
+import loadable from '@loadable/component'
 import { Switch, Route } from 'react-router-dom'
 import IndexScene from './IndexScene'
 import Header from './Header'
-import load from 'src/utils/load'
 
-const AdminLayout = load('./@admin/AdminLayout')
-const PricesScene = load('./@prices/PricesScene')
+const AdminLayout = loadable(() => import('./@admin/AdminLayout'))
+const PricesScene = loadable(() => import('./@prices/PricesScene'))
 
 const Layout = () =>
   <Switch>

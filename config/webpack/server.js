@@ -1,5 +1,6 @@
 const path = require('path')
 const merge = require('webpack-merge')
+const webpack = require('webpack')
 const config = require('../../webpack.config')
 
 module.exports = merge(config, {
@@ -11,4 +12,9 @@ module.exports = merge(config, {
     filename: 'server.js',
     libraryTarget: 'commonjs2'
   },
+  plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1,
+    }),
+  ],
 })
