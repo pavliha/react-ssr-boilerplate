@@ -1,3 +1,7 @@
+/**
+ * Material UI Theme
+ */
+
 export default {
   typography: {
     useNextVariants: true,

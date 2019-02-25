@@ -2,7 +2,15 @@ import React, { Fragment } from 'react'
 import Layout from 'src/components/Layout'
 import { Helmet } from 'react-helmet'
 
+/**
+ * Import global styles
+ */
+
 import 'assets/index.css'
+
+/**
+ * Entry point for your application
+ */
 
 const App = () =>
   <Fragment>

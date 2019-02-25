@@ -1,8 +1,12 @@
 const path = require('path')
 const Css = require('mini-css-extract-plugin')
-
 const Env = require('dotenv-webpack')
 const webpack = require('webpack')
+
+/**
+ * Common webpack config for both server and client configs.
+ * Every plugin added there runs twice
+ */
 
 module.exports = {
   devtool: 'source-map',
@@ -10,6 +14,10 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json'],
     modules: ['node_modules'],
+
+    /**
+     * Add your aliases here
+     */
     alias: {
       src: path.resolve(__dirname, './src'),
       api: path.resolve(__dirname, './src/api'),
@@ -30,11 +38,18 @@ module.exports = {
 
   module: {
     rules: [
+      /**
+       * Resolve jsx for React components and js for all order javascript code
+       */
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
+
+      /**
+       * Looks for all css imports
+       */
       {
         test: /\.css$/,
         use: [
@@ -42,6 +57,10 @@ module.exports = {
           'css-loader',
         ],
       },
+
+      /**
+       * With this loader you can import svg icons. And this will convert svg to jsx code
+       */
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: [
@@ -54,6 +73,9 @@ module.exports = {
           },
         ],
       },
+      /**
+       * With this loader you can import pictures and it will provide path to them
+       */
       {
         test: /\.(jpe?g|png|gif|ico)$/i,
         use: [
@@ -71,11 +93,27 @@ module.exports = {
   },
 
   plugins: [
+
+    /**
+     * Enables support for .env files
+     */
     new Env({ safe: true }),
+
+    /**
+     * Don't know what is's doing. Please contribute and write explanation comment :)
+     */
     new webpack.NoEmitOnErrorsPlugin(),
+
+    /**
+     * Defines NODE_ENV again
+     */
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': process.argv.includes('--production') ? '"production"' : '"development"',
     }),
+
+    /**
+     * Bundles all css to separate file
+     */
     new Css({
       filename: '[name].css',
       chunkFilename: '[id].css',

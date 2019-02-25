@@ -7,6 +7,10 @@ import Header from './Header'
 const AdminLayout = loadable(() => import('./@admin/AdminLayout'))
 const PricesScene = loadable(() => import('./@prices/PricesScene'))
 
+/**
+ * Some dummy layout to show code splitting is working
+ */
+
 const Layout = () =>
   <Switch>
     <Route path="/admin" component={() => <AdminLayout />} />
