@@ -1,4 +1,4 @@
-# Real world project with server 
+#Invoice CRM
 
 `yarn install && yarn start`
 
@@ -7,6 +7,3 @@
 * all webpack loaders working
 * seamless code splitting with loadable
 * webpack aliases
-
-##Libraries
-
