@@ -10,15 +10,19 @@ class Http {
 
   handleError(err) {
     if (err) {
-      throw err
+      console.error(err)
     }
   }
 
   async request(method, url, params, config) {
     try {
       const { data } = await this.instance[method](url, params, config)
+      console.log(`${method.toUpperCase()}: ${url} FULFILLED`)
+
       return data
     } catch (err) {
+      console.log(`${method.toUpperCase()}:${url} REJECTED`)
+
       this.handleError(err)
     }
   }

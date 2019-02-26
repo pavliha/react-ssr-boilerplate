@@ -1,8 +1,6 @@
-import { all, fork } from 'redux-saga/effects'
-import photos from './entities/photos'
+import { all } from 'redux-saga/effects'
 
 export default function * rootSaga() {
   yield all([
-    fork(photos),
   ])
 }

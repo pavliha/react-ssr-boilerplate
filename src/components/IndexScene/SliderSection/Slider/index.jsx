@@ -9,7 +9,7 @@ const styles = {
 
 const Slider = ({ classes, photos }) =>
   <div className={classes.root}>
-    {photos.map(photo => <Slide photo={photo} />)}
+    {photos.map(photo => <Slide key={photo.id} photo={photo} />)}
   </div>
 
 Slider.propTypes = {

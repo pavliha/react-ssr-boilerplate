@@ -25,7 +25,9 @@ module.exports = {
       engines: path.resolve(__dirname, './src/redux/engines'),
       entities: path.resolve(__dirname, './src/redux/app/entities'),
       utils: path.resolve(__dirname, './src/utils'),
-      assets: path.resolve(__dirname, './src/assets')
+      assets: path.resolve(__dirname, './src/assets'),
+      setup: path.resolve(__dirname, './setup'),
+      constants: path.resolve(__dirname, './constants')
     }
   },
 
@@ -103,13 +105,6 @@ module.exports = {
      * Don't know what is's doing. Please contribute and write explanation comment :)
      */
     new webpack.NoEmitOnErrorsPlugin(),
-
-    /**
-     * Defines NODE_ENV again
-     */
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': process.argv.includes('--production') ? '"production"' : '"development"',
-    }),
 
     /**
      * Bundles all css to separate file

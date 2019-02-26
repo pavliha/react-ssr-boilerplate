@@ -30,6 +30,7 @@ module.exports = merge(config, {
   },
 
   plugins: [
+
     /**
      * Minifies all global css styles with cache protection
      */
