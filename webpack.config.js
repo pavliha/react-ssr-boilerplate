@@ -27,7 +27,9 @@ module.exports = {
       utils: path.resolve(__dirname, './src/utils'),
       assets: path.resolve(__dirname, './src/assets'),
       setup: path.resolve(__dirname, './setup'),
-      constants: path.resolve(__dirname, './constants')
+      constants: path.resolve(__dirname, './constants'),
+      controls: path.resolve(__dirname, './components/controls'),
+      components: path.resolve(__dirname, './components')
     }
   },
 

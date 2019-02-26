@@ -15,6 +15,8 @@ const app = express()
 
 config()
 
+app.set('view engine', 'ejs')
+
 /**
  * Setup build mode to production or development
  */
