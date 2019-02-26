@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const merge = require('webpack-merge')
 const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -31,15 +30,6 @@ module.exports = merge(config, {
   },
 
   plugins: [
-    /**
-     * Sets up again production environment for some reason
-     */
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-
     /**
      * Minifies all global css styles with cache protection
      */

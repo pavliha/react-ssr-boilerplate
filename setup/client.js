@@ -2,14 +2,14 @@ import React from 'react'
 import { hydrate } from 'react-dom'
 import WithTheme from './components/WithTheme'
 import WithRedux from './components/WithRedux'
-import HotApp from './components/HotApp'
+import App from 'src/App'
 import { BrowserRouter } from 'react-router-dom'
 
 hydrate(
   <WithTheme>
     <WithRedux>
       <BrowserRouter>
-        <HotApp />
+        <App />
       </BrowserRouter>
     </WithRedux>
   </WithTheme>,
