@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core'
 import AdminHeader from './AdminHeader'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import PhotosScene from './@photos/PhotosScene'
-import PricesScene from '../@prices/PricesScene'
+import DevelopmentScene from './@prices/DevelopmentScene'
 
 const styles = {
   root: {},
@@ -15,8 +15,9 @@ const AdminLayout = ({ classes }) =>
     <AdminHeader />
     <Switch>
       <Route exact path="/admin/photos" component={PhotosScene} />
-      <Route exact path="/prices" component={PricesScene} />
-      <Redirect to="/photos" />
+      <Route exact path="/admin/prices" component={DevelopmentScene} />
+      <Route exact path="/admin/contacts" component={DevelopmentScene} />
+      <Redirect to="/admin/photos" />
     </Switch>
   </div>
 

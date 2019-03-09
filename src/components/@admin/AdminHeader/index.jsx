@@ -21,8 +21,8 @@ const Header = ({ classes }) =>
   <nav className={classes.root}>
     <ul className={classes.list}>
       <NavItem to="/admin/photos">ФОТОГРАФИИ</NavItem>
-      <NavItem to="/prices">ЦЕНЫ И УСЛУГИ</NavItem>
-      <NavItem to="/contacts">КОНТАКТЫ</NavItem>
+      <NavItem to="/admin/prices">ЦЕНЫ И УСЛУГИ</NavItem>
+      <NavItem to="/admin/contacts">КОНТАКТЫ</NavItem>
     </ul>
   </nav>
 
