@@ -19,7 +19,7 @@ module.exports = merge(config, {
   devServer: {
     contentBase: path.resolve(__dirname, '../../../build/public'),
     compress: true,
-    port: 2000,
+    port: process.env.PORT || 2000,
     hot: true,
     disableHostCheck: true,
     historyApiFallback: true,
